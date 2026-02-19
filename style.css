@@ -13,7 +13,8 @@ body {
     background-color: var(--bg-soft);
     color: var(--text-main);
     display: flex;
-    overflow: hidden; /* Prevents double scrollbars */
+    min-height: 100vh;
+    overflow-x: hidden; /* Only hide horizontal scroll */
 }
 
 /* Sidebar Styling */
@@ -73,25 +74,29 @@ body {
 /* Main Display Area */
 main {
     flex-grow: 1;
-    height: 100vh;
+    height: 100vh; 
+    overflow-y: auto; /* This adds the scrollbar when content is long */
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Changed from 'center' so long text starts at the top */
+    padding: 60px 20px; /* Add padding so the card doesn't hit the edges */
     background-image: radial-gradient(var(--accent-pink) 0.5px, transparent 0.5px);
-    background-size: 20px 20px; /* Subtle polka dot artistic texture */
+    background-size: 20px 20px;
 }
 
 .message-card {
     background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
-    width: 80%;
+    width: 90%;
     max-width: 600px;
-    min-height: 400px;
-    padding: 4rem;
+    padding: 3rem;
+    margin-bottom: 50px; /* Space at the bottom after scrolling */
     border-radius: 60px 10px 60px 10px;
-    box-shadow: 20px 20px 60px #d1d1d1, -20px -20px 60px #ffffff;
+    box-shadow: 20px 20px 60px rgba(0,0,0,0.05);
     text-align: center;
     transition: opacity 0.5s ease;
+    /* Remove 'min-height' if it's forcing weird gaps, or keep it as: */
+    min-height: auto; 
 }
 
 h1 {
